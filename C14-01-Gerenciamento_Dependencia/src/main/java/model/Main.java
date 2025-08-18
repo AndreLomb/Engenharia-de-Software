@@ -7,7 +7,10 @@ public class Main {
         Pessoa pessoa = new Pessoa("André", 20, true);
         Gson gson = new Gson();
 
-        pessoa.isEmpregado("André", true);
+        if (pessoa.isEmpregado())
+            System.out.println(pessoa.getNome() + " está empregado");
+        else
+            System.out.println(pessoa.getNome() + " está desempregado!");
 
         String json = gson.toJson(pessoa);
         System.out.println(json);
