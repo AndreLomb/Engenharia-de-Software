@@ -16,4 +16,13 @@ public class InimigoConst {
                     "qtdVida": 20, \s
                      \
                     "arma": "Ferrão" }""";
+
+    public static String INEXISTENTE =
+            """
+                    { "nome:" "NULL", \s
+                     \
+                     "qtdVida: -9999, \s
+                     \
+                     "arma:" "Undefined_Weapon" \s
+                    }""";
 }
