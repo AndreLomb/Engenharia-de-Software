@@ -3,11 +3,21 @@ package mock;
 import c14.model.Inimigo;
 import c14.service.InimigoService;
 import c14.search.BuscaInimigo;
+import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class TestBuscaInimigo {
+
+    InimigoService service;
+    BuscaInimigo buscaInimigo;
+
+    @Before
+    public void setup(){
+        this.service = new MockInimigoService();
+        this.buscaInimigo = new BuscaInimigo(service);
+    }
 
     @Test
     public void testBuscaInimigoSkeleton(){
@@ -21,4 +31,23 @@ public class TestBuscaInimigo {
         assertEquals("Espada do Skeleton", skeleton.getArma());
 
     }
+
+    @Test
+    public void testBuscaInimigoPadrao(){
+        Inimigo skeleton = buscaInimigo.buscaInimigo(-10);
+
+        assertEquals("Aranha", skeleton.getNome());
+        assertEquals(20, skeleton.getQtdVida(), 0.1);
+        assertEquals("Ferrão", skeleton.getArma());
+    }
+
+    @Test
+    public void testInserirInimigoArray(){
+        MockInimigoService mock = new MockInimigoService();
+
+        mock.inserirIdValido();
+
+        assertEquals(2, mock.getIdsValidos().size());
+    }
+
 }
