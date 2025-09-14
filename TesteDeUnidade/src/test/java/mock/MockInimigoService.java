@@ -1,7 +1,5 @@
 package mock;
 
-import c14.exceptions.IdNegativaException;
-import c14.model.Inimigo;
 import c14.service.InimigoService;
 
 import java.util.ArrayList;
@@ -14,6 +12,10 @@ public class MockInimigoService implements InimigoService {
         idsValidos.clear();
         idsValidos.add(10);
         idsValidos.add(20);
+    }
+
+    public List<Integer> getIdsValidos(){
+        return idsValidos;
     }
 
     @Override
