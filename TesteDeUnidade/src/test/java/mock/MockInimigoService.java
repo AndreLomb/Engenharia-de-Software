@@ -1,13 +1,35 @@
 package mock;
 
+import c14.exceptions.IdNegativaException;
+import c14.model.Inimigo;
 import c14.service.InimigoService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MockInimigoService implements InimigoService {
+    private List<Integer> idsValidos = new ArrayList<>();
+
+    public void inserirIdValido(){
+        idsValidos.clear();
+        idsValidos.add(10);
+        idsValidos.add(20);
+    }
+
     @Override
     public String busca(int id) {
-        if(id == 10)
-            return InimigoConst.SKELETON;
-        return InimigoConst.ARANHA;
+        if (id < 0){
+            return InimigoConst.INEXISTENTE;
+        }
+
+        if(!idsValidos.contains(id)){
+            return InimigoConst.INEXISTENTE;
+        }
+
+        if(id == 10) return InimigoConst.SKELETON;
+        if(id == 20) return InimigoConst.ARANHA;
+
+        return InimigoConst.INEXISTENTE;
     }
 
     @Override
